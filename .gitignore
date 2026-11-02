@@ -1,0 +1,27 @@
+# Local environments, credentials and generated work never belong in the repo.
+.venv*/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+data/
+artifacts/
+output/
+tmp/
+build/
+dist/
+*.log
+.DS_Store
+Thumbs.db
+# Only the two deliberately included inference bundles are versioned.
+*.pkl
+*.pt
+*.npy
+*.npz
+*.ubj
+*.cbm
+!models/hist-gradient-boosting/trees.pkl
+!models/xgboost/xgboost.ubj

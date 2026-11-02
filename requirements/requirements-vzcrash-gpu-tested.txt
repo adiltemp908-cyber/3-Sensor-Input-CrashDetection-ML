@@ -1,0 +1,8 @@
+# CUDA torch wheel: --extra-index-url https://download.pytorch.org/whl/cu126
+torch==2.9.1+cu126
+numpy==2.1.3
+scikit-learn==1.6.1
+pyarrow==19.0.0
+huggingface-hub==0.36.0
+matplotlib==3.10.0
+pytest==8.3.4

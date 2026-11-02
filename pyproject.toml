@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "three-sensor-crash-detection"
+version = "0.1.0"
+description = "Crash event classification from accelerometer, gyroscope and GPS speed"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26,<3", "scikit-learn==1.6.1", "torch>=2.2,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+vzcrash = ["huggingface_hub>=0.36,<2", "pyarrow>=21,<24"]
+plots = ["matplotlib>=3.8,<4"]
+boosted = ["xgboost>=3.0.5,<4", "catboost>=1.2.8,<2"]
+
+[project.scripts]
+crashdetect = "crashdetect.vzcrash.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["crashdetect*"]
+
+[tool.setuptools.package-data]
+"crashdetect.vzcrash" = ["web/*.html", "web/*.css", "web/*.js"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

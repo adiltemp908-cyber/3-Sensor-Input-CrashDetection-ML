@@ -1,0 +1,3 @@
+# Optional libraries added to the existing GPU environment
+xgboost==3.0.5
+catboost==1.2.8

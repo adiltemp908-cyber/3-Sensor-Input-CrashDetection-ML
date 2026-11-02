@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Crash detection · Recording browser</title><link rel="stylesheet" href="/style.css"><script defer src="/app.js"></script></head>
+<body>
+<header><div class="shell topbar"><a class="brand" href="/">CD<span>Crash detection</span></a><span class="local"><i></i> Running locally</span></div></header>
+<main class="shell">
+  <div class="intro"><div><div class="eyebrow">SENSOR RECORDINGS</div><h1>Explore a recording.</h1><p>See the measurements, the dataset label, and what the detector predicts.</p></div><span class="model-tag">Gradient-boosted trees</span></div>
+  <section class="stats" aria-label="Dataset totals"><div><span>Usable recordings</span><strong id="total">—</strong></div><div><span>Training</span><strong id="train-count">—</strong></div><div><span>Validation</span><strong id="validation-count">—</strong></div><div><span>Test</span><strong id="test-count">—</strong></div></section>
+  <section class="panel controls" aria-label="Choose a recording">
+    <div class="tabs" role="tablist" aria-label="Input source"><button id="browse-tab" role="tab" aria-selected="true" aria-controls="browse-pane">Browse dataset</button><button id="upload-tab" role="tab" aria-selected="false" aria-controls="upload-pane">Upload CSV</button></div>
+    <div id="browse-pane" role="tabpanel" aria-labelledby="browse-tab">
+      <form id="lookup-form" class="lookup">
+        <label>Find by<select id="lookup-mode"><option value="event_id">Event ID</option><option value="number">Recording number</option></select></label>
+        <label><span id="number-label">Event ID</span><input id="lookup-value" type="number" min="1" step="1" required value="19088" inputmode="numeric"></label>
+        <label id="partition-control" hidden>Partition<select id="partition"><option value="all">All usable recordings</option><option value="train">Training</option><option value="validation">Validation</option><option value="test">Test</option></select></label>
+        <button class="primary" id="load-button" type="submit">Open recording <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="hint" id="lookup-hint">An event ID is the dataset’s original identifier. Try 19088 (test), 9322 (training), or 18909 (validation).</p>
+    </div>
+    <div id="upload-pane" role="tabpanel" aria-labelledby="upload-tab" hidden>
+      <form id="upload-form" class="lookup"><label class="file-label">Your sensor recording<input type="file" id="csv-file" accept=".csv,text/csv" required></label><button class="primary" id="upload-button" type="submit">Analyze CSV <span aria-hidden="true">→</span></button></form>
+      <p class="hint">Columns: <code>time_s,ax,ay,az,gx,gy,gz,speed</code>. Aligned 100 Hz readings in m/s², rad/s, and m/s. Vehicle axes; acceleration includes gravity. Up to 5 MB. Files are processed locally and not saved.</p>
+    </div>
+    <p class="message" id="message" role="status" aria-live="polite">Loading dataset…</p>
+  </section>
+  <section id="record" hidden aria-label="Recording details">
+    <div class="record-heading"><div><div class="eyebrow" id="record-source">VZCRASH RECORDING</div><h2 id="record-title">Event</h2></div><div class="actions"><button id="previous-record" title="Previous usable recording">← Previous</button><button id="next-record" title="Next usable recording">Next →</button><button id="download">Download CSV ↓</button></div></div>
+    <div class="result-grid">
+      <section class="panel identity"><div class="card-label">DATASET RECORD</div><div class="chips"><span id="split-badge" class="badge"></span><span id="label-badge" class="badge neutral"></span></div><p id="record-status"></p><dl><div><dt>Recording number</dt><dd id="ordinal">—</dd></div><div><dt>Length</dt><dd id="length">—</dd></div><div><dt>Vehicle size</dt><dd id="vehicle">—</dd></div><div><dt>Gyroscope resolution</dt><dd id="gyro">—</dd></div></dl></section>
+      <section class="panel prediction"><div class="card-label">MODEL OUTPUT</div><h3 id="prediction-title">—</h3><p id="prediction-context"></p><div class="score-row"><div><span>Model score</span><strong id="score">—</strong></div><div><span>Decision threshold</span><strong id="threshold">—</strong></div></div><p class="fineprint">The score is uncalibrated; it is not a verified crash probability. This detector classifies completed recordings.</p></section>
+    </div>
+    <p id="record-note" class="record-note"></p>
+    <div id="measurements">
+      <div class="section-heading"><div><h2>Sensor measurements</h2><p>Prepared readings in physical units. GPS speed is held on the 100 Hz timeline.</p></div><span class="pill">7 channels · 100 Hz</span></div>
+      <details id="sensor-graphs" class="graph-toggle"><summary>Show sensor graphs</summary>
+      <div class="charts"><figure class="panel"><figcaption>Acceleration <span>m/s²</span></figcaption><div class="legend"><span class="x">X</span><span class="y">Y</span><span class="z">Z</span></div><canvas id="accel-chart" role="img" aria-label="Acceleration on three axes over time"></canvas></figure><figure class="panel"><figcaption>Angular velocity <span>rad/s</span></figcaption><div class="legend"><span class="x">X</span><span class="y">Y</span><span class="z">Z</span></div><canvas id="gyro-chart" role="img" aria-label="Angular velocity on three axes over time"></canvas></figure><figure class="panel"><figcaption>GPS speed <span>m/s</span></figcaption><div class="legend"><span class="x">Speed</span></div><canvas id="speed-chart" role="img" aria-label="GPS speed over time"></canvas></figure></div>
+      </details>
+      <section class="panel sample-panel"><div class="table-heading"><h3>All sample values</h3><span id="row-range"></span></div><div class="table-scroll"><table><thead><tr><th scope="col">Sample</th><th scope="col">Time (s)</th><th scope="col">ax (m/s²)</th><th scope="col">ay (m/s²)</th><th scope="col">az (m/s²)</th><th scope="col">gx (rad/s)</th><th scope="col">gy (rad/s)</th><th scope="col">gz (rad/s)</th><th scope="col">Speed (m/s)</th></tr></thead><tbody id="sample-rows"></tbody></table></div><div class="pagination"><span>50 rows per page · download the CSV for full precision</span><div><button id="first-page">First</button><button id="previous-page">← Previous</button><button id="next-page">Next →</button></div></div></section>
+    </div>
+  </section>
+  <footer><span>Local recording browser</span><span>Dataset labels and model predictions are shown separately.</span></footer>
+</main>
+</body></html>

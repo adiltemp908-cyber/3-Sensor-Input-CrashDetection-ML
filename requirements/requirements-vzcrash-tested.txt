@@ -1,0 +1,6 @@
+# Direct versions used in the local Windows / Python 3.13.5 experiment.
+# Constraints, not a complete platform-independent lockfile.
+-r requirements-tested.txt
+pyarrow==23.0.1
+huggingface_hub==0.36.0
+matplotlib==3.10.0

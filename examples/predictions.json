@@ -1,0 +1,80 @@
+[
+  {
+    "file": "normal_driving.csv",
+    "event_id": 19088,
+    "partition": "test",
+    "provider_label": "Normal driving",
+    "samples": 1600,
+    "source": "VZCrash; SI conversion and 100 Hz CSV export",
+    "predictions": {
+      "trees": {
+        "score": 5.87067069947733e-06,
+        "threshold": 0.5562889424776457,
+        "crash_clip": false,
+        "model": "trees",
+        "deployment_validated": false,
+        "task": "event-clip classification"
+      },
+      "xgboost": {
+        "score": 7.34970717530814e-06,
+        "threshold": 0.5477622151374817,
+        "crash_clip": false,
+        "model": "xgboost",
+        "deployment_validated": false,
+        "task": "event-clip classification"
+      }
+    }
+  },
+  {
+    "file": "crash.csv",
+    "event_id": 2492132,
+    "partition": "test",
+    "provider_label": "Crash",
+    "samples": 1600,
+    "source": "VZCrash; SI conversion and 100 Hz CSV export",
+    "predictions": {
+      "trees": {
+        "score": 0.9997564096571064,
+        "threshold": 0.5562889424776457,
+        "crash_clip": true,
+        "model": "trees",
+        "deployment_validated": false,
+        "task": "event-clip classification"
+      },
+      "xgboost": {
+        "score": 0.9999107122421265,
+        "threshold": 0.5477622151374817,
+        "crash_clip": true,
+        "model": "xgboost",
+        "deployment_validated": false,
+        "task": "event-clip classification"
+      }
+    }
+  },
+  {
+    "file": "synthetic_pulse.csv",
+    "event_id": null,
+    "partition": null,
+    "provider_label": "Unknown",
+    "samples": 1600,
+    "source": "Artificial workflow demonstration; no verified crash label",
+    "predictions": {
+      "trees": {
+        "score": 0.9771085071315019,
+        "threshold": 0.5562889424776457,
+        "crash_clip": true,
+        "model": "trees",
+        "deployment_validated": false,
+        "task": "event-clip classification"
+      },
+      "xgboost": {
+        "score": 0.9955297112464905,
+        "threshold": 0.5477622151374817,
+        "crash_clip": true,
+        "model": "xgboost",
+        "deployment_validated": false,
+        "task": "event-clip classification"
+      }
+    }
+  }
+]

@@ -1,0 +1,191 @@
+{
+  "vzcrash-classical-20261024": {
+    "arguments": {
+      "command": "benchmark",
+      "prepared": "data/vzcrash/prepared",
+      "output": "artifacts/vzcrash-classical-20261024",
+      "models": [
+        "decision_tree",
+        "random_forest"
+      ],
+      "sensors": "all",
+      "boost_rounds": 1000,
+      "forest_trees": 300,
+      "epochs": 30,
+      "patience": 5,
+      "batch_size": 64,
+      "threads": 4,
+      "learning_rate": 0.0005,
+      "seed": 42,
+      "target_recall": 0.95,
+      "device": "cpu",
+      "amp": false,
+      "max_train": 0
+    },
+    "versions": {
+      "torch": "2.9.1+cu126",
+      "numpy": "2.1.3",
+      "scikit-learn": "1.6.1",
+      "pyarrow": "19.0.0",
+      "huggingface-hub": "0.36.0"
+    },
+    "model_sha256": {
+      "decision_tree.pkl": "9fc9eee81337cac2a0645c4b48e279c1b305c9680d7834670af9504c027f0931",
+      "random_forest.pkl": "f02a64df2623951cba274384691cdc3da7a1bcdcffbda491f9c4ed76d792fe5b"
+    },
+    "training_events": 137357,
+    "seed": 42,
+    "target_recall": 0.95,
+    "source_revision": "42e1482d005c0e545379d6cfa4939486c9fe4249",
+    "catalog_sha256": "1dfe685867abe40b2fb82a08ae8eae8ed4ca59225990addc23a7cafe4311c29b"
+  },
+  "vzcrash-trees": {
+    "arguments": {
+      "command": "benchmark",
+      "prepared": "data/vzcrash/prepared",
+      "output": "artifacts/vzcrash-trees",
+      "models": [
+        "trees"
+      ],
+      "sensors": "all",
+      "epochs": 30,
+      "patience": 5,
+      "batch_size": 64,
+      "threads": 4,
+      "learning_rate": 0.0005,
+      "seed": 42,
+      "target_recall": 0.95,
+      "device": "cpu",
+      "max_train": 0
+    },
+    "versions": {
+      "torch": "2.9.1",
+      "numpy": "2.1.3",
+      "scikit-learn": "1.6.1",
+      "pyarrow": "23.0.1",
+      "huggingface-hub": "0.36.0"
+    },
+    "model_sha256": {
+      "trees.pkl": "1503887a9d379d714fd1e54dfbabab21b20c3d10bbdf80c251dc2ad09635697f"
+    },
+    "training_events": 137357,
+    "seed": 42,
+    "target_recall": 0.95,
+    "source_revision": "42e1482d005c0e545379d6cfa4939486c9fe4249",
+    "catalog_sha256": "1dfe685867abe40b2fb82a08ae8eae8ed4ca59225990addc23a7cafe4311c29b"
+  },
+  "vzcrash-boosted-20261023": {
+    "arguments": {
+      "command": "benchmark",
+      "prepared": "data/vzcrash/prepared",
+      "output": "artifacts/vzcrash-boosted-20261023",
+      "models": [
+        "xgboost",
+        "catboost"
+      ],
+      "sensors": "all",
+      "boost_rounds": 1000,
+      "epochs": 30,
+      "patience": 5,
+      "batch_size": 64,
+      "threads": 4,
+      "learning_rate": 0.0005,
+      "seed": 42,
+      "target_recall": 0.95,
+      "device": "cuda",
+      "amp": false,
+      "max_train": 0
+    },
+    "versions": {
+      "torch": "2.9.1+cu126",
+      "numpy": "2.1.3",
+      "scikit-learn": "1.6.1",
+      "pyarrow": "19.0.0",
+      "huggingface-hub": "0.36.0",
+      "xgboost": "3.0.5",
+      "catboost": "1.2.8"
+    },
+    "model_sha256": {
+      "catboost.cbm": "cb6e75ed5e8f67f625540de8c1be3c977498be9f68600914f851013a8fcd4b7a",
+      "xgboost.ubj": "91ff75bc0df77837efabf667e4bcbe780d444f04d2bf39acc8f8979710e8a166"
+    },
+    "training_events": 137357,
+    "seed": 42,
+    "target_recall": 0.95,
+    "source_revision": "42e1482d005c0e545379d6cfa4939486c9fe4249",
+    "catalog_sha256": "1dfe685867abe40b2fb82a08ae8eae8ed4ca59225990addc23a7cafe4311c29b"
+  },
+  "vzcrash-inception-20261023": {
+    "arguments": {
+      "command": "benchmark",
+      "prepared": "data/vzcrash/prepared",
+      "output": "artifacts/vzcrash-inception-20261023",
+      "models": [
+        "inception_time"
+      ],
+      "sensors": "all",
+      "epochs": 8,
+      "patience": 3,
+      "batch_size": 16,
+      "threads": 4,
+      "learning_rate": 0.0005,
+      "seed": 42,
+      "target_recall": 0.95,
+      "device": "cuda",
+      "amp": true,
+      "max_train": 0
+    },
+    "versions": {
+      "torch": "2.9.1+cu126",
+      "numpy": "2.1.3",
+      "scikit-learn": "1.6.1",
+      "pyarrow": "19.0.0",
+      "huggingface-hub": "0.36.0"
+    },
+    "model_sha256": {
+      "inception_time.pt": "4f109777eb45bb54af406bbbdd0cdf6cbd9ffb4fd2039dbfafd684769c52f9bf"
+    },
+    "training_events": 137357,
+    "seed": 42,
+    "target_recall": 0.95,
+    "source_revision": "42e1482d005c0e545379d6cfa4939486c9fe4249",
+    "catalog_sha256": "1dfe685867abe40b2fb82a08ae8eae8ed4ca59225990addc23a7cafe4311c29b"
+  },
+  "vzcrash-neural-20261021": {
+    "arguments": {
+      "command": "benchmark",
+      "prepared": "data/vzcrash/prepared",
+      "output": "artifacts/vzcrash-neural-20261021",
+      "models": [
+        "cnn_gru",
+        "cnn_transformer"
+      ],
+      "sensors": "all",
+      "epochs": 8,
+      "patience": 3,
+      "batch_size": 64,
+      "threads": 4,
+      "learning_rate": 0.0005,
+      "seed": 42,
+      "target_recall": 0.95,
+      "device": "cpu",
+      "max_train": 0
+    },
+    "versions": {
+      "torch": "2.9.1",
+      "numpy": "2.1.3",
+      "scikit-learn": "1.6.1",
+      "pyarrow": "23.0.1",
+      "huggingface-hub": "0.36.0"
+    },
+    "model_sha256": {
+      "cnn_gru.pt": "2155c7a04ccb1b6b25358116e9d2987a74f278124bbb9259b76cac3ec9d9f6bd",
+      "cnn_transformer.pt": "873096bf602826d1c0db7c8ee05a9ece010185e04be37f16630ac8f4b9b4cba4"
+    },
+    "training_events": 137357,
+    "seed": 42,
+    "target_recall": 0.95,
+    "source_revision": "42e1482d005c0e545379d6cfa4939486c9fe4249",
+    "catalog_sha256": "1dfe685867abe40b2fb82a08ae8eae8ed4ca59225990addc23a7cafe4311c29b"
+  }
+}
